@@ -1,0 +1,9 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+    <s:Body>
+        <u:SetAVTransportURI xmlns:u="urn:schemas-upnp-org:service:AVTransport:1">
+            <InstanceID>0</InstanceID>
+            <CurrentURI><![CDATA[$uri]]></CurrentURI>
+            <CurrentURIMetaData/>
+        </u:SetAVTransportURI>
+    </s:Body>
+</s:Envelope>

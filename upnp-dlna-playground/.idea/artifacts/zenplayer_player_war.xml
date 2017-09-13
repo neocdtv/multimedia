@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zenplayer-player:war">
+    <output-path>$PROJECT_DIR$/../../zenplayer/zenplayer-player/target</output-path>
+    <root id="archive" name="zenplayer-player.war">
+      <element id="artifact" artifact-name="zenplayer-player:war exploded" />
+    </root>
+  </artifact>
+</component>

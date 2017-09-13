@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../../cling" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/demo/android" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/demo/android/browser" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/demo/android/light" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/distribution" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/mediarenderer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/support" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/website" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../cling/workbench" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../upnp-dlna-player" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../upnp-generation" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../zenplayer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../zenplayer/zenplayer-player" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../zenplayer/zenplayer-renderer-mplayer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../zenplayer/zenplayer-renderer-omxplayer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../zenplayer/zenplayer-renderer-shared" charset="UTF-8" />
+  </component>
+</project>

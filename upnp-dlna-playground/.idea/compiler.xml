@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="CLIMediaRenderer" />
+        <module name="ssdp" />
+        <module name="upnp-dlna-player" />
+        <module name="upnp-generation" />
+        <module name="zenplayer-player" />
+        <module name="zenplayer-renderer-mplayer" />
+        <module name="zenplayer-renderer-omxplayer" />
+        <module name="zenplayer-renderer-shared" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CLIMediaRenderer" target="1.8" />
+      <module name="cling" target="1.7" />
+      <module name="cling-core" target="1.7" />
+      <module name="cling-demo" target="1.7" />
+      <module name="cling-demo-android" target="1.7" />
+      <module name="cling-demo-android-browser" target="1.7" />
+      <module name="cling-demo-android-light" target="1.7" />
+      <module name="cling-distribution" target="1.7" />
+      <module name="cling-mediarenderer" target="1.7" />
+      <module name="cling-support" target="1.7" />
+      <module name="cling-website" target="1.7" />
+      <module name="cling-workbench" target="1.7" />
+      <module name="ssdp" target="1.8" />
+      <module name="upnp-dlna-player" target="1.7" />
+      <module name="upnp-generation" target="1.8" />
+      <module name="zenplayer" target="1.8" />
+      <module name="zenplayer-player" target="1.8" />
+      <module name="zenplayer-renderer-mplayer" target="1.8" />
+      <module name="zenplayer-renderer-omxplayer" target="1.8" />
+      <module name="zenplayer-renderer-shared" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

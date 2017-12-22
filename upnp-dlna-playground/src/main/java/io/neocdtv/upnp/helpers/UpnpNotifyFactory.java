@@ -3,68 +3,71 @@ package io.neocdtv.upnp.helpers;
 /**
  * Created by xix on 11.09.17.
  */
-public class UpnpResponseFactory {
+public class UpnpNotifyFactory {
 
   private final String uuid;
   private final String server;
   private final String location;
 
-  public UpnpResponseFactory(final String uuid, final String server, String location) {
+  public UpnpNotifyFactory(final String uuid, final String server, String location) {
     this.uuid = uuid;
     this.server = server;
     this.location = location;
   }
 
-  public static UpnpResponseFactory create(final String uuid, final String server, final String location) {
-    String hardcodedUuid = "uuid:4D454930-0100-1000-8001-20C6EBA660A1";
-    return new UpnpResponseFactory(hardcodedUuid, server, location);
+  public static UpnpNotifyFactory create(final String uuid, final String server, final String location) {
+    return new UpnpNotifyFactory(uuid, server, location);
   }
 
-  public String buildRootDeviceResponse() {
-    return UpnpResponseBuilder.ok().
+  public String buildRootDeviceNotifyRequest() {
+    return UpnpRequestBuilder.notifyRequest().
         cacheControl(HttpConstants.HTTP_HEADER_VALUE_NO_CACHE).
+        host(SsdpConstants.MULTICAST_ADDRESS).
         usn(UpnpHelper.buildUsn(uuid, UpnpHelper.ROOT_DEVICE)).
         location(location).
         server(server).
-        ext("").
-        st(UpnpHelper.ROOT_DEVICE).
+        nt(UpnpHelper.buildNt(uuid, UpnpHelper.ROOT_DEVICE)).
+        nts(UpnpHelper.UPNP_ALIVE).
         build();
   }
 
-  public String buildPlainResponse() {
-    return UpnpResponseBuilder.ok().
+  public String buildPlainNotifyRequest() {
+    return UpnpRequestBuilder.notifyRequest().
         cacheControl(HttpConstants.HTTP_HEADER_VALUE_NO_CACHE).
+        host(SsdpConstants.MULTICAST_ADDRESS).
         usn(uuid).
         location(location).
         server(server).
-        ext("").
-        st(uuid).
+        nt(uuid).
+        nts(UpnpHelper.UPNP_ALIVE).
         build();
   }
 
-  public String buildMediaRendererResponse() {
-    return UpnpResponseBuilder.ok().
+  public String buildMediaRendererNotifyRequest() {
+    return UpnpRequestBuilder.notifyRequest().
         cacheControl(HttpConstants.HTTP_HEADER_VALUE_NO_CACHE).
+        host(SsdpConstants.MULTICAST_ADDRESS).
         usn(UpnpHelper.buildUsn(uuid, UpnpHelper.MEDIA_RENDERER)).
         location(location).
         server(server).
-        ext("").
-        st(UpnpHelper.MEDIA_RENDERER).
+        nt(UpnpHelper.MEDIA_RENDERER).
+        nts(UpnpHelper.UPNP_ALIVE).
         build();
   }
 
-  public String buildConnectionManagerResponse() {
-    return UpnpResponseBuilder.ok().
+  public String buildConnectionManagerNotifyRequest() {
+    return UpnpRequestBuilder.notifyRequest().
         cacheControl(HttpConstants.HTTP_HEADER_VALUE_NO_CACHE).
+        host(SsdpConstants.MULTICAST_ADDRESS).
         usn(UpnpHelper.buildUsn(uuid, UpnpHelper.CONNECTION_MANAGER)).
         location(location).
         server(server).
-        ext("").
-        st(UpnpHelper.CONNECTION_MANAGER).
+        nt(UpnpHelper.CONNECTION_MANAGER).
+        nts(UpnpHelper.UPNP_ALIVE).
         build();
   }
 
-  public String buildRenderingControlResponse() {
+  public String buildRenderingControlDiscoveryResponse() {
     return UpnpResponseBuilder.ok().
         cacheControl(HttpConstants.HTTP_HEADER_VALUE_NO_CACHE).
         usn(UpnpHelper.buildUsn(uuid, UpnpHelper.RENDERING_CONTROL)).
@@ -75,7 +78,7 @@ public class UpnpResponseFactory {
         build();
   }
 
-  public String buildAVTransportResponse() {
+  public String buildAVTransportNotifyDiscoveryResponse() {
     return UpnpResponseBuilder.ok().
         cacheControl(HttpConstants.HTTP_HEADER_VALUE_NO_CACHE).
         usn(UpnpHelper.buildUsn(uuid, UpnpHelper.AV_TRANSPORT)).

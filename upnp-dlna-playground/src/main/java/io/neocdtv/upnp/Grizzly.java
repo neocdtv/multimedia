@@ -174,8 +174,19 @@ public class Grizzly {
     if (body.length() > 0) {
       body = XmlFormatter.prettyFormat(body);
     }
-    String requestCall = request.getMethod().getMethodString() + " " + request.getRequestURL();
-    System.out.println(requestCall + "\r\n" + body);
+    StringBuffer requestAsString = new StringBuffer(request.getMethod().getMethodString() + " " + request.getRequestURL());
+    Iterable<String> headerNames = request.getHeaderNames();
+    headerNames.forEach(headerName -> {
+      requestAsString.
+          append("\r\n").
+          append(headerName).
+          append(": ").
+          append(request.getHeader(headerName));
+    });
+    requestAsString.
+        append("\r\n").
+        append(body);
+    System.out.println(requestAsString);
   }
 
   private static String loadFileFromResource(final String relativePath) throws IOException {

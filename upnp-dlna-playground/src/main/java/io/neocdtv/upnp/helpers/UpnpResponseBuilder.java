@@ -20,22 +20,22 @@ public class UpnpResponseBuilder {
   }
 
   public UpnpResponseBuilder usn(final String usn) {
-    addHeader(SsdpHelper.HTTP_HEADER_NAME_UNIQUE_SERVICE_NAME, usn);
+    addHeader(SsdpConstants.HTTP_HEADER_NAME_UNIQUE_SERVICE_NAME, usn);
     return this;
   }
 
   public UpnpResponseBuilder cacheControl(final String cacheControl) {
-    addHeader(HttpHelper.HTTP_HEADER_NAME_CACHE_CONTROL, cacheControl);
+    addHeader(HttpConstants.HTTP_HEADER_NAME_CACHE_CONTROL, cacheControl);
     return this;
   }
 
   public UpnpResponseBuilder location(final String location) {
-    addHeader(HttpHelper.HTTP_HEADER_NAME_LOCATION, location);
+    addHeader(HttpConstants.HTTP_HEADER_NAME_LOCATION, location);
     return this;
   }
 
   public UpnpResponseBuilder server(final String server) {
-    addHeader(HttpHelper.HTTP_HEADER_NAME_SERVER, server);
+    addHeader(HttpConstants.HTTP_HEADER_NAME_SERVER, server);
     return this;
   }
 

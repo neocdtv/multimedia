@@ -6,14 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CLIMediaRenderer" />
         <module name="ssdp" />
-        <module name="upnp-dlna-player" />
-        <module name="upnp-generation" />
-        <module name="zenplayer-player" />
-        <module name="zenplayer-renderer-mplayer" />
-        <module name="zenplayer-renderer-omxplayer" />
-        <module name="zenplayer-renderer-shared" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -37,6 +30,8 @@
       <module name="zenplayer-renderer-mplayer" target="1.8" />
       <module name="zenplayer-renderer-omxplayer" target="1.8" />
       <module name="zenplayer-renderer-shared" target="1.8" />
+      <module name="zenplayer-renderer-standalone" target="1.8" />
+      <module name="zenplayer-ui" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

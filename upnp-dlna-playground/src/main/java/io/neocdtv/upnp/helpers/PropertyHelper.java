@@ -39,7 +39,7 @@ public class PropertyHelper {
 	}
 	
 	/**
-	 * Gets the playerType property for use by the player factory
+	 * Gets the playerType property for use by the players factory
 	 * @return
 	 */
 	public String getMediaPlayer() {
@@ -55,7 +55,7 @@ public class PropertyHelper {
 	}
 	
 	/**
-	 * Gets the name of the player
+	 * Gets the name of the players
 	 * @return
 	 */
 	public String getName() {

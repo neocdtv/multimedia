@@ -11,7 +11,7 @@ public class UpnpRequestBuilder {
   private UpnpRequestBuilder() {
     response = new StringBuffer();
     response.
-        append(GenaHelper.HTTP_METHOD_NOTIFY).
+        append(GenaConstants.HTTP_METHOD_NOTIFY).
         append("* HTTP/1.1").
         append(NEW_LINE);
   }
@@ -21,37 +21,52 @@ public class UpnpRequestBuilder {
   }
 
   public UpnpRequestBuilder usn(final String usn) {
-    addHeader(SsdpHelper.HTTP_HEADER_NAME_UNIQUE_SERVICE_NAME, usn);
+    addHeader(SsdpConstants.HTTP_HEADER_NAME_UNIQUE_SERVICE_NAME, usn);
     return this;
   }
 
   public UpnpRequestBuilder host(final String host) {
-    addHeader(SsdpHelper.HTTP_HEADER_NAME_UNIQUE_SERVICE_NAME, host);
+    addHeader(HttpConstants.HTTP_HEADER_NAME_HOST, host);
     return this;
   }
 
   public UpnpRequestBuilder cacheControl(final String cacheControl) {
-    addHeader(HttpHelper.HTTP_HEADER_NAME_CACHE_CONTROL, cacheControl);
+    addHeader(HttpConstants.HTTP_HEADER_NAME_CACHE_CONTROL, cacheControl);
     return this;
   }
 
   public UpnpRequestBuilder location(final String location) {
-    addHeader(HttpHelper.HTTP_HEADER_NAME_LOCATION, location);
+    addHeader(HttpConstants.HTTP_HEADER_NAME_LOCATION, location);
     return this;
   }
 
   public UpnpRequestBuilder server(final String server) {
-    addHeader(HttpHelper.HTTP_HEADER_NAME_SERVER, server);
+    addHeader(HttpConstants.HTTP_HEADER_NAME_SERVER, server);
     return this;
   }
 
-  public UpnpRequestBuilder nt(final String ext) {
-    addHeader(GenaHelper.HTTP_HEADER_NAME_NOTIFICATION_TYPE, ext);
+  public UpnpRequestBuilder nt(final String nt) {
+    addHeader(GenaConstants.HTTP_HEADER_NAME_NOTIFICATION_TYPE, nt);
+    return this;
+  }
+
+  public UpnpRequestBuilder st(final String st) {
+    addHeader(UpnpHelper.ST, st);
+    return this;
+  }
+
+  public UpnpRequestBuilder mx(final String mx) {
+    addHeader(UpnpHelper.MX, mx);
+    return this;
+  }
+
+  public UpnpRequestBuilder man(final String man) {
+    addHeader(UpnpHelper.MAN, man);
     return this;
   }
 
   public UpnpRequestBuilder nts(final String st) {
-    addHeader(GenaHelper.HTTP_HEADER_NAME_NOTIFICATION_SUB_TYPE, st);
+    addHeader(GenaConstants.HTTP_HEADER_NAME_NOTIFICATION_SUB_TYPE, st);
     return this;
   }
 

@@ -11,10 +11,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/../../zenplayer/pom.xml" />
-        <option value="$PROJECT_DIR$/../../CLIMediaRenderer/pom.xml" />
-        <option value="$PROJECT_DIR$/../upnp-dlna-player/pom.xml" />
-        <option value="$PROJECT_DIR$/../upnp-generation/pom.xml" />
       </list>
     </option>
   </component>

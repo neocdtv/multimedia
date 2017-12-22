@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../CLIMediaRenderer/CLIMediaRenderer.iml" filepath="$PROJECT_DIR$/../../CLIMediaRenderer/CLIMediaRenderer.iml" />
       <module fileurl="file://$PROJECT_DIR$/ssdp.iml" filepath="$PROJECT_DIR$/ssdp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../upnp-dlna-player/upnp-dlna-player.iml" filepath="$PROJECT_DIR$/../upnp-dlna-player/upnp-dlna-player.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../upnp-generation/upnp-generation.iml" filepath="$PROJECT_DIR$/../upnp-generation/upnp-generation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../zenplayer/zenplayer.iml" filepath="$PROJECT_DIR$/../../zenplayer/zenplayer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../zenplayer/zenplayer-player/zenplayer-player.iml" filepath="$PROJECT_DIR$/../../zenplayer/zenplayer-player/zenplayer-player.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../zenplayer/zenplayer-renderer-mplayer/zenplayer-renderer-mplayer.iml" filepath="$PROJECT_DIR$/../../zenplayer/zenplayer-renderer-mplayer/zenplayer-renderer-mplayer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../zenplayer/zenplayer-renderer-omxplayer/zenplayer-renderer-omxplayer.iml" filepath="$PROJECT_DIR$/../../zenplayer/zenplayer-renderer-omxplayer/zenplayer-renderer-omxplayer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../zenplayer/zenplayer-renderer-shared/zenplayer-renderer-shared.iml" filepath="$PROJECT_DIR$/../../zenplayer/zenplayer-renderer-shared/zenplayer-renderer-shared.iml" />
     </modules>
   </component>
 </project>

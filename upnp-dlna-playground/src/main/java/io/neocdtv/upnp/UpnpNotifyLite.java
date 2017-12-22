@@ -12,6 +12,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,16 +26,16 @@ import static io.neocdtv.upnp.helpers.UpnpHelper.buildUuid;
 /**
  * @author xix
  */
-public class UpnpNotify extends Thread {
+public class UpnpNotifyLite extends Thread {
 
-  private final static Logger LOGGER = Logger.getLogger(UpnpNotify.class.getName());
+  private final static Logger LOGGER = Logger.getLogger(UpnpNotifyLite.class.getName());
 
   public static void main(String[] args) throws InterruptedException {
     startIt();
   }
 
   public static void startIt() {
-    new UpnpNotify().start();
+    new UpnpNotifyLite().start();
   }
 
   @Override
@@ -41,30 +43,22 @@ public class UpnpNotify extends Thread {
 
     try {
       InetAddress multicastAddress = InetAddress.getByName(MULTICAST_IP);
-      final DatagramSocket msocket = new DatagramSocket();
-      msocket.setBroadcast(true);
-      msocket.setReuseAddress(true);
+      final DatagramSocket datagramSocket = new DatagramSocket();
+      datagramSocket.setBroadcast(true);
+      datagramSocket.setReuseAddress(true);
 
       UpnpNotifyFactory upnpNotifyFactory = UpnpNotifyFactory.
           create(buildUuid(), SERVER, LOCATION);
 
-      sendSSDP(multicastAddress, msocket, upnpNotifyFactory.buildRootDeviceNotifyRequest());
-      sendSSDP(multicastAddress, msocket, upnpNotifyFactory.buildPlainNotifyRequest());
-      sendSSDP(multicastAddress, msocket, upnpNotifyFactory.buildMediaRendererNotifyRequest());
-      sendSSDP(multicastAddress, msocket, upnpNotifyFactory.buildConnectionManagerNotifyRequest());
-      // is this an error
-      sendSSDP(multicastAddress, msocket, upnpNotifyFactory.buildRenderingControlDiscoveryResponse());
-      sendSSDP(multicastAddress, msocket, upnpNotifyFactory.buildAVTransportNotifyDiscoveryResponse());
+      sendSSDP(multicastAddress, datagramSocket, upnpNotifyFactory.buildMediaRendererNotifyRequest());
 
-    } catch (UnknownHostException ex) {
-      Logger.getLogger(UpnpNotify.class.getName()).log(Level.SEVERE, null, ex);
     } catch (IOException ex) {
-      Logger.getLogger(UpnpNotify.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(UpnpNotifyLite.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 
-  private static void sendSSDP(InetAddress multicastAddress, DatagramSocket msocket, String msg) throws IOException {
-    byte[] txbuf = msg.getBytes("UTF-8");
+  private void sendSSDP(InetAddress multicastAddress, DatagramSocket msocket, String msg) throws IOException {
+    byte[] txbuf = msg.getBytes(StandardCharsets.UTF_8.name());
     DatagramPacket hi = new DatagramPacket(txbuf, txbuf.length, multicastAddress, MULTICAST_PORT);
     msocket.send(hi);
     LOGGER.log(Level.FINE, "SSDP discover sent:\n" + msg);

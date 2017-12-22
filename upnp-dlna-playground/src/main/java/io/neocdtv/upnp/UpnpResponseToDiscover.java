@@ -5,9 +5,8 @@
  */
 package io.neocdtv.upnp;
 
-import io.neocdtv.upnp.helpers.GenaHelper;
-import io.neocdtv.upnp.helpers.SsdpHelper;
-import io.neocdtv.upnp.helpers.UpnpHelper;
+import io.neocdtv.upnp.helpers.GenaConstants;
+import io.neocdtv.upnp.helpers.SsdpConstants;
 import io.neocdtv.upnp.helpers.UpnpResponseFactory;
 
 import java.io.IOException;
@@ -16,8 +15,11 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static io.neocdtv.upnp.helpers.UpnpHelper.*;
 
 /**
  * @author xix
@@ -26,27 +28,47 @@ public class UpnpResponseToDiscover extends Thread {
 
   private final static Logger LOGGER = Logger.getLogger(UpnpResponseToDiscover.class.getName());
 
-  public static void main(String[] args) throws InterruptedException {
-    startIt();
+  private String address;
+  private String playerName;
+
+  public String getAddress() {
+    return address;
   }
 
-  public static void startIt() {
-    new UpnpResponseToDiscover().start();
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public String getPlayerName() {
+    return playerName;
+  }
+
+  public void setPlayerName(String playerName) {
+    this.playerName = playerName;
+  }
+
+  public static void main(String[] args) throws InterruptedException {
+    startIt("192.168.178.23", "Zenplayer");
+  }
+
+  public static void startIt(final String address, final String name) {
+    final UpnpResponseToDiscover upnpResponseToDiscover = new UpnpResponseToDiscover();
+    upnpResponseToDiscover.setAddress(address);
+    upnpResponseToDiscover.setPlayerName(name);
+    upnpResponseToDiscover.start();
   }
 
   @Override
   public void run() {
-
     try {
-
-      MulticastSocket socket = new MulticastSocket(SsdpHelper.MULTICAST_PORT);
-      InetAddress group = InetAddress.getByName(SsdpHelper.MULTICAST_IP);
+      MulticastSocket socket = new MulticastSocket(SsdpConstants.MULTICAST_PORT);
+      InetAddress group = InetAddress.getByName(SsdpConstants.MULTICAST_IP);
 
       socket.joinGroup(group);
 
       UpnpResponseFactory responseBuilder =
           UpnpResponseFactory.
-              create(UpnpHelper.buildUuid(), UpnpHelper.SERVER, UpnpHelper.LOCATION);
+              create(buildUuid(), SERVER, LOCATION);
 
       while (true) {
         byte[] inbuf = new byte[8192];
@@ -56,11 +78,10 @@ public class UpnpResponseToDiscover extends Thread {
         int numBytesReceived = packet.getLength();
         final String receivedMessage = new String(inbuf, 0, numBytesReceived);
 
-        if (receivedMessage.contains(GenaHelper.HTTP_METHOD_SEARCH)) {
-          LOGGER.info("SSDP multicast message received: \n" + receivedMessage + "\n");
+        if (receivedMessage.contains(GenaConstants.HTTP_METHOD_SEARCH)) {
+          LOGGER.log(Level.INFO, "SSDP multicast message received: \n" + receivedMessage + "\n");
 
-          // TODO: if a device requests for ROOT_DEVICE, is it possible to answer only with MEDIA_RENDERER?
-          if (receivedMessage.contains(UpnpHelper.ROOT_DEVICE)) {
+          if (receivedMessage.contains(ROOT_DEVICE)) {
             sendResponse(packet.getAddress(), packet.getPort(), responseBuilder.buildRootDeviceResponse());
             sendResponse(packet.getAddress(), packet.getPort(), responseBuilder.buildPlainResponse());
             sendResponse(packet.getAddress(), packet.getPort(), responseBuilder.buildMediaRendererResponse());
@@ -68,7 +89,7 @@ public class UpnpResponseToDiscover extends Thread {
             sendResponse(packet.getAddress(), packet.getPort(), responseBuilder.buildConnectionManagerResponse());
             sendResponse(packet.getAddress(), packet.getPort(), responseBuilder.buildAVTransportResponse());
           }
-          if (receivedMessage.contains(UpnpHelper.MEDIA_RENDERER)) {
+          if (receivedMessage.contains(MEDIA_RENDERER)) {
             sendResponse(packet.getAddress(), packet.getPort(), responseBuilder.buildMediaRendererResponse());
           }
         }
@@ -82,12 +103,13 @@ public class UpnpResponseToDiscover extends Thread {
 
   private static void sendResponse(InetAddress address, int port, String msg) throws IOException {
     final DatagramSocket unicastSocket = new DatagramSocket();
-    LOGGER.info("SSDP response to: " + address.getCanonicalHostName() + " and " + port);
+    LOGGER.log(Level.FINE, "SSDP response to: " + address.getCanonicalHostName() + " and " + port);
     unicastSocket.setReuseAddress(true);
 
-    byte[] txbuf = msg.getBytes("UTF-8");
+
+    byte[] txbuf = msg.getBytes(StandardCharsets.UTF_8.displayName());
     DatagramPacket responseToDiscover = new DatagramPacket(txbuf, txbuf.length, address, port);
-    LOGGER.info("SSDP sent: " + msg);
+    LOGGER.log(Level.FINE, "SSDP sent: " + msg);
     unicastSocket.send(responseToDiscover);
   }
 }
